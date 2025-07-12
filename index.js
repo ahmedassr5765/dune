@@ -348,3 +348,66 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('rtl-transition');
     }, 100);
 });
+
+// Function to fix paths for GitHub Pages deployment
+function fixPathsForGitHubPages() {
+    // Check if we're on GitHub Pages
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    
+    if (isGitHubPages) {
+        const repoName = 'dune'; // Your repository name
+        const basePath = `/${repoName}`;
+        
+        // Fix all image src attributes
+        const images = document.querySelectorAll('img[src^="/images/"]');
+        images.forEach(img => {
+            const currentSrc = img.getAttribute('src');
+            img.setAttribute('src', basePath + currentSrc);
+        });
+        
+        // Fix all background-image styles
+        const elementsWithBgImage = document.querySelectorAll('[style*="background-image: url(\'/images/"]');
+        elementsWithBgImage.forEach(element => {
+            const currentStyle = element.getAttribute('style');
+            const updatedStyle = currentStyle.replace(/url\('\/images\//g, `url('${basePath}/images/`);
+            element.setAttribute('style', updatedStyle);
+        });
+        
+        // Fix font URLs in stylesheets
+        const styleSheets = document.styleSheets;
+        for (let i = 0; i < styleSheets.length; i++) {
+            try {
+                const styleSheet = styleSheets[i];
+                if (styleSheet.cssRules) {
+                    for (let j = 0; j < styleSheet.cssRules.length; j++) {
+                        const rule = styleSheet.cssRules[j];
+                        if (rule.type === CSSRule.FONT_FACE_RULE) {
+                            const cssText = rule.cssText;
+                            if (cssText.includes("url('./Fonts/")) {
+                                // Remove the existing rule
+                                styleSheet.deleteRule(j);
+                                // Add the updated rule
+                                const updatedCss = cssText.replace(/url\('\.\//g, `url('${basePath}/`);
+                                styleSheet.insertRule(updatedCss, j);
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                // Some stylesheets might not be accessible due to CORS
+                console.warn('Could not access stylesheet:', e);
+            }
+        }
+        
+        // Alternative approach for font URLs - update the style element directly
+        const styleElements = document.querySelectorAll('style');
+        styleElements.forEach(style => {
+            if (style.innerHTML.includes("url('./Fonts/")) {
+                style.innerHTML = style.innerHTML.replace(/url\('\.\//g, `url('${basePath}/`);
+            }
+        });
+    }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', fixPathsForGitHubPages);
