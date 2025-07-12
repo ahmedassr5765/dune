@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUNE</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Local Fonts -->
+    <style>
+        @font-face {
+            font-family: 'D-DIN Condensed';
+            src: url('./Fonts/D-DINCondensed-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('./Fonts/HelveticaNeueMedium.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TailwindCSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ddin': ['D-DIN Condensed', 'sans-serif'],
+                        'helvetica': ['Helvetica Neue', 'sans-serif'],
+                        'dm-serif': ['DM Serif Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        
+        [dir="rtl"] .header-container {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .logo {
+            order: 3;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        [dir="rtl"] .nav-items {
+            order: 2;
+            flex-direction: row;
+            margin-left: 0;
+            margin-right: 0;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        [dir="rtl"] .lang-toggle {
+            order: 1;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        [dir="rtl"] .nav-items a {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        /* Language Toggle Button */
+        .lang-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .lang-toggle:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation Active State */
+        .nav-active {
+            color: #f59e0b;
+        }
+        
+        /* RTL Animation */
+        .rtl-transition {
+            transition: all 0.5s ease;
+        }
+        
+        /* Black Top Bar */
+        .top-bar {
+            background-color: #000000;
+            height: 63px;
+        }
+    </style>
+</head>
+<body class="font-helvetica bg-gray-50 rtl-transition">
+    <!-- Black Top Bar -->
+    <div class="top-bar"></div>
+    
+    <!-- Header -->
+    <header class="max-w-[1440px] mx-auto bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 border-[#E5E5E5] border-2 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6 header-container">
+                <div class="flex items-center logo">
+                    <a href="#" class="flex items-center">
+                        <img src="/images/logo.svg" alt="DUNE" class="h-8 w-auto">
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-20 nav-items">
+                    <a href="#" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="HOME" data-ar="الرئيسية">HOME</a>
+                    <a href="#" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="ABOUT US" data-ar="معلومات عنا">ABOUT US</a>
+                    <a href="#" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="LEASING" data-ar="الإيجار">LEASING</a>
+                    <a href="#" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="AMENITIES" data-ar="الخدمات">AMENITIES</a>
+                    <a href="#" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="CONTACT US" data-ar="اتصل بنا">CONTACT US</a>
+                </nav>
+                <div class="flex items-center lang-toggle">
+                    <button id="languageToggle" class="bg-black text-white px-4 py-2 text-[28px] font-normal font-dm-serif hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded-[5px]">
+                        En
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-[1440px] mx-auto relative h-[1024px] bg-cover bg-center bg-no-repeat" style="background-image: url('/images/hero.png');">
+        
+        <!-- Text Content Container with Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 z-10 h-[350px]">
+            <!-- Text Background Overlay -->
+            <div class="absolute inset-0" style="background-color: #000000A8;"></div>
+            
+            <!-- Text Content -->
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[90px] pt-[55px] h-full flex flex-col justify-end">
+                <div class="">
+                    <!-- Main Heading -->
+                    <h1 class="text-white font-bold font-ddin mb-4 leading-tight hero-title drop-shadow-lg" 
+                        style="font-size: 26px; max-width: 741px;"
+                        data-en="A premier luxury destination for global brands in the heart of New Cairo." 
+                        data-ar="وجهة فاخرة ومتميزة للعلامات التجارية العالمية في قلب القاهرة الجديدة.">
+                        A premier luxury destination for global brands in the heart of New Cairo.
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p class="text-white mb-8 leading-relaxed hero-subtitle font-[300px] font-sans text-[22px] w-[1100px]" 
+                       data-en="Discover a new era of workspace excellence—where innovation, convenience, and exclusivity converge. Step into DUNE to experience a visionary environment designed for today's most ambitious enterprises." 
+                       data-ar="اكتشف عصرًا جديدًا من التميز في مساحات العمل، حيث تلتقي الابتكارات والراحة والحصرية. تفضل بزيارة DUNE لتجربة بيئة عمل واعدة مصممة خصيصًا للشركات الأكثر طموحًا في عصرنا.">
+                        Discover a new era of workspace excellence—where innovation, convenience, and exclusivity converge. Step into DUNE to experience a visionary environment designed for today's most ambitious enterprises.
+                    </p>
+                    
+                    <!-- CTA Button -->
+                    <button class="bg-[#FBAA19] hover:bg-[#e09915] text-white py-[17px] px-[43px] rounded-full text-[20px] transition-colors duration-300 uppercase tracking-wide hero-cta font-ddin" 
+                            data-en="SCHEDULE A TOUR" 
+                            data-ar="جدولة جولة">
+                        SCHEDULE A TOUR
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Logo/Branding -->
+        <div class="absolute bottom-8 right-8 z-30">
+            <div class="text-white text-xs opacity-60 drop-shadow-md">
+                <span class="hero-brand font-ddin" data-en="NARA STUDIOS" data-ar="استوديوهات نارا">NARA STUDIOS</span>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Welcome to DUNE Section -->
+    <section class="max-w-[1440px] mx-auto bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Welcome to DUNE Block -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <h2 class="text-black font-bold font-ddin text-[35px] leading-tight welcome-title" 
+                        data-en="WELCOME TO DUNE" 
+                        data-ar="مرحباً بكم في DUNE">
+                        WELCOME TO DUNE
+                    </h2>
+                    
+                    <p class="text-black text-[18px] max-w-[450px] font-medium leading-relaxed font-sans welcome-desc" 
+                       data-en="DUNE redefines modern business environments. Strategically located in New Cairo's thriving hub, we provide state-of-the-art office and retail spaces to empower multinational companies and elevate the standard of luxury and innovation." 
+                       data-ar="يُعيد &quot;DUNE&quot; تعريف بيئات الأعمال العصرية. بموقعه الاستراتيجي في قلب القاهرة الجديدة النابض بالحياة، نوفر مساحات مكتبية وتجارية متطورة تُمكّن الشركات متعددة الجنسيات من تحقيق نموّ متسارع، وترتقي بمستوى الفخامة والابتكار.">
+                        DUNE redefines modern business environments. Strategically located in New Cairo's thriving hub, we provide state-of-the-art office and retail spaces to empower multinational companies and elevate the standard of luxury and innovation.
+                    </p>
+                    
+                    <button class="bg-black hover:bg-gray-800 text-white py-[12px] px-[56px] rounded-full text-[22px] font-bold transition-colors duration-300 uppercase tracking-wide welcome-cta font-ddin" 
+                            data-en="LEARN MORE" 
+                            data-ar="اعرف المزيد">
+                        LEARN MORE
+                    </button>
+                </div>
+                
+                <!-- Image -->
+                <div class="relative">
+                    <img src="/images/building-exterior.jpg" alt="DUNE Building" class="w-full h-[400px] object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <!-- Prime Office Space Block -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="relative order-2 md:order-1">
+                    <img src="/images/office-interior.jpg" alt="Office Interior" class="w-full h-[400px] object-cover rounded-lg shadow-lg">
+                </div>
+                
+                <!-- Text Content -->
+                <div class="space-y-6 order-1 md:order-2">
+                    <h2 class="text-black font-bold font-ddin text-[35px] leading-tight office-title" 
+                        data-en="PRIME OFFICE SPACE FOR LEASE" 
+                        data-ar="مساحات مكتبية متميزة للإيجار">
+                        PRIME OFFICE SPACE FOR LEASE
+                    </h2>
+                    
+                    <p class="text-black text-[18px] max-w-[580px] font-medium leading-relaxed font-sans office-desc" 
+                       data-en="Explore flexible solutions, top-tier amenities, and a vibrant community
+                       that fosters growth. Join us and experience the prestige
+                       of having your brand shine “In a New Light.”" 
+                       data-ar="استكشف الحلول المرنة والمرافق عالية المستوى والمجتمع النابض بالحياة الذي يعزز النمو. انضم إلينا واختبر هيبة العمل في ديون.">
+                       Explore flexible solutions, top-tier amenities, and a vibrant community
+                       that fosters growth. Join us and experience the prestige
+                       
+                       of having your brand shine “In a New Light.”
+                    </p>
+                    
+                    <button class="bg-black hover:bg-gray-800 text-white py-[12px] px-[56px] rounded-full text-[22px] font-bold transition-colors duration-300 uppercase tracking-wide office-cta font-ddin" 
+                            data-en="LEARN MORE" 
+                            data-ar="اعرف المزيد">
+                        LEARN MORE
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Features Section -->
+        <section class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 font-ddin mb-2 feature-title" data-en="Premium Location" data-ar="موقع مميز">Premium Location</h3>
+                <p class="text-gray-600 feature-desc" data-en="Strategically located in the most prestigious area of the city." data-ar="يقع في موقع استراتيجي في أرقى مناطق المدينة.">Strategically located in the most prestigious area of the city.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 font-ddin mb-2 feature-title" data-en="Luxury Amenities" data-ar="خدمات فاخرة">Luxury Amenities</h3>
+                <p class="text-gray-600 feature-desc" data-en="World-class amenities designed for your comfort and convenience." data-ar="خدمات عالمية المستوى مصممة لراحتك وسهولتك.">World-class amenities designed for your comfort and convenience.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 font-ddin mb-2 feature-title" data-en="Exceptional Service" data-ar="خدمة استثنائية">Exceptional Service</h3>
+                <p class="text-gray-600 feature-desc" data-en="24/7 concierge service and dedicated staff to meet your every need." data-ar="خدمة بواب على مدار الساعة وموظفين مخصصين لتلبية جميع احتياجاتك.">24/7 concierge service and dedicated staff to meet your every need.</p>
+            </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-gray-400 footer-text" data-en="&copy; 2024 DUNE. All rights reserved." data-ar="&copy; 2024 ديون. جميع الحقوق محفوظة.">&copy; 2024 DUNE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="index.js"></script>
+</body>
+</html>
