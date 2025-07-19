@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUNE</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Local Fonts -->
+    <style>
+        @font-face {
+            font-family: 'D-DIN Condensed';
+            src: url('./Fonts/D-DINCondensed-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('./Fonts/HelveticaNeueMedium.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- TailwindCSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ddin': ['D-DIN Condensed', 'sans-serif'],
+                        'helvetica': ['Helvetica Neue', 'sans-serif'],
+                        'dm-serif': ['DM Serif Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        
+        [dir="rtl"] .header-container {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .logo {
+            order: 3;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        [dir="rtl"] .nav-items {
+            order: 2;
+            flex-direction: row;
+            margin-left: 0;
+            margin-right: 0;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        [dir="rtl"] .lang-toggle {
+            order: 1;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        [dir="rtl"] .nav-items a {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        
+        /* Language Toggle Button */
+        .lang-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .lang-toggle:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation Active State */
+        .nav-active {
+            color: #f59e0b;
+        }
+        
+        /* RTL Animation */
+        .rtl-transition {
+            transition: all 0.5s ease;
+        }
+        
+        /* Black Top Bar */
+        .top-bar {
+            background-color: #000000;
+            height: 63px;
+        }
+        
+        /* RTL Overlay Direction Changes */
+        [dir="rtl"] .overlay-first-box {
+            background: linear-gradient(270deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%) !important;
+        }
+        
+        [dir="rtl"] .overlay-first-box.xl\:hidden {
+            background: linear-gradient(270deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%) !important;
+        }
+        
+        [dir="rtl"] .overlay-first-box.xl\:block {
+            background: linear-gradient(270deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%) !important;
+        }
+        
+        [dir="rtl"] .overlay-second-box {
+            background: linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%) !important;
+        }
+        
+        [dir="rtl"] .overlay-second-box.xl\:hidden {
+            background: linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%) !important;
+        }
+        
+        [dir="rtl"] .overlay-second-box.xl\:block {
+            background: linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%) !important;
+        }
+    </style>
+</head>
+<body class="font-helvetica bg-gray-50 rtl-transition">
+    <!-- Black Top Bar -->
+    <div class="top-bar"></div>
+    
+    <!-- Header -->
+    <header class="max-w-[1440px] mx-auto bg-white shadow-sm">
+        <div class="max-w-8xl mx-auto px-4 border-[#E5E5E5] border-2 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6 header-container">
+                <div class="flex items-center logo">
+                    <a href="index.html" class="flex items-center">
+                        <img src="/images/logo.svg" alt="DUNE" class="h-8 w-auto">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-12 xl:space-x-16 2xl:space-x-20 nav-items">
+                    <a href="index.html" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[20px] xl:text-[22px] 2xl:text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="HOME" data-ar="الرئيسية">HOME</a>
+                    <a href="about.html" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[20px] xl:text-[22px] 2xl:text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="ABOUT US" data-ar="معلومات عنا">ABOUT US</a>
+                    <a href="leasing.html" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[20px] xl:text-[22px] 2xl:text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="LEASING" data-ar="الإيجار">LEASING</a>
+                    <a href="amenities.html" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[20px] xl:text-[22px] 2xl:text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="AMENITIES" data-ar="الخدمات">AMENITIES</a>
+                    <a href="contact.html" class="text-black hover:text-[#FBAA19] px-3 py-2 text-[20px] xl:text-[22px] 2xl:text-[24px] font-ddin transition-colors duration-200 nav-link" data-en="CONTACT US" data-ar="اتصل بنا">CONTACT US</a>
+                </nav>
+                
+                <!-- Desktop Language Toggle -->
+                <div class="hidden lg:flex items-center lang-toggle">
+                    <button id="languageToggle" class="bg-black text-white px-4 py-2 text-[28px] font-normal font-dm-serif hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded-[5px]">
+                        En
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobileMenuToggle" class="text-black hover:text-[#FBAA19] focus:outline-none focus:text-[#FBAA19] transition-colors duration-200">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 z-50 bg-black bg-opacity-50 hidden lg:hidden">
+            <div class="fixed inset-y-0 right-0 max-w-sm w-full bg-white shadow-xl">
+                <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                    <img src="/images/logo.svg" alt="DUNE" class="h-8 w-auto">
+                    <button id="closeMobileMenu" class="text-black hover:text-[#FBAA19] focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="px-6 py-6">
+                    <!-- Mobile Navigation Links -->
+                    <nav class="space-y-6">
+                        <a href="index.html" class="block text-black hover:text-[#FBAA19] text-[20px] font-ddin transition-colors duration-200 mobile-nav-link" data-en="HOME" data-ar="الرئيسية">HOME</a>
+                        <a href="about.html" class="block text-black hover:text-[#FBAA19] text-[20px] font-ddin transition-colors duration-200 mobile-nav-link" data-en="ABOUT US" data-ar="معلومات عنا">ABOUT US</a>
+                        <a href="leasing.html" class="block text-black hover:text-[#FBAA19] text-[20px] font-ddin transition-colors duration-200 mobile-nav-link" data-en="LEASING" data-ar="الإيجار">LEASING</a>
+                        <a href="amenities.html" class="block text-black hover:text-[#FBAA19] text-[20px] font-ddin transition-colors duration-200 mobile-nav-link" data-en="AMENITIES" data-ar="الخدمات">AMENITIES</a>
+                        <a href="contact.html" class="block text-black hover:text-[#FBAA19] text-[20px] font-ddin transition-colors duration-200 mobile-nav-link" data-en="CONTACT US" data-ar="اتصل بنا">CONTACT US</a>
+                    </nav>
+                    
+                    <!-- Mobile Language Toggle -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <p class="text-gray-600 text-[14px] font-helvetica mb-4" data-en="Language" data-ar="اللغة">Language</p>
+                        <div class="flex space-x-4 rtl:space-x-reverse rtl:space-x-4">
+                            <button id="mobileLanguageEn" class="bg-black text-white px-4 py-2 text-[18px] font-normal font-dm-serif hover:bg-gray-800 transition-colors duration-200 focus:outline-none rounded-[5px] mobile-lang-btn active">
+                                En
+                            </button>
+                            <button id="mobileLanguageAr" class="bg-gray-300 text-black px-4 py-2 text-[18px] font-normal font-dm-serif hover:bg-gray-400 transition-colors duration-200 focus:outline-none rounded-[5px] mobile-lang-btn">
+                                AR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-[1440px] mx-auto relative h-[600px] lg:h-[1024px] bg-cover bg-no-repeat bg-center lg:bg-center" style="background-image: url('/images/about-bg.png');">
+        
+        <!-- Text Content Container with Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 z-10 h-[280px] lg:h-[350px]">
+            <!-- Text Background Overlay -->
+            <div class="absolute inset-0" style="background-color: #000000A8;"></div>
+            
+            <!-- Text Content -->
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[30px] lg:pb-[90px] pt-[20px] lg:pt-[55px] h-full flex flex-col justify-end">
+                <div class="">
+                    <!-- Subtitle -->
+                    <p class="text-white mb-6 lg:mb-8 leading-relaxed hero-subtitle font-[300px] font-sans text-[14px] lg:text-[18px] xl:text-[20px] 2xl:text-[22px] w-full lg:w-[900px] xl:w-[1000px] 2xl:w-[1100px] max-w-[90%] lg:max-w-none" 
+                       data-en="Welcome to DUNE, an exclusive commercial hub in the heart of New Cairo, crafted for elite businesses seeking the perfect
+                       blend of luxury and innovation. With its iconic architectural lighting and bold, contemporary design, DUNE stands as a beacon of prestige, offering limited, premium spaces tailor edfor discerning tenants in office, retail, and dining sectors. Committed to providing an unparalleled experience, DUNE
+                       is not just a destination—it’s a statement of excellence and status" 
+                       data-ar="أهلاً بكم في DUNE، مركز تجاري حصري في قلب القاهرة الجديدة، مصمم خصيصاً للشركات المرموقة التي تبحث عن مزيج مثالي من الفخامة والابتكار. بفضل إضاءته المعمارية المميزة وتصميمه العصري الجريء، يُمثل ديون رمزاً للفخامة، حيث يوفر مساحات محدودة وراقية مصممة خصيصاً للمستأجرين المميزين في قطاعات المكاتب والتجزئة والمطاعم. ملتزمون بتقديم تجربة لا مثيل لها، ديون ليس مجرد وجهة، بل هو رمز للتميز والمكانة المرموقة.">
+                       Welcome to DUNE, an exclusive commercial hub in the heart of New Cairo, crafted for elite businesses seeking the perfect
+                       blend of luxury and innovation. With its iconic architectural lighting and bold, contemporary design, DUNE stands as a beacon of prestige, offering limited, premium spaces tailor edfor discerning tenants in office, retail, and dining sectors. Committed to providing an unparalleled experience, DUNE
+                       is not just a destination—it’s a statement of excellence and status                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Logo/Branding -->
+        <div class="absolute bottom-4 lg:bottom-8 right-4 lg:right-8 z-30">
+            <div class="text-white text-xs opacity-60 drop-shadow-md">
+                <span class="hero-brand font-ddin" data-en="NARA STUDIOS" data-ar="استوديوهات نارا">NARA STUDIOS</span>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Office & Meeting Spaces Section -->
+    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 xl:py-16">
+        <div class="space-y-6 lg:space-y-8 xl:space-y-12">
+            
+            <!-- First Box - Office Spaces -->
+            <div class="relative w-full h-[300px] sm:h-[350px] lg:h-[400px] xl:w-[1355px] xl:h-[455px] bg-cover bg-center bg-no-repeat rounded-xl lg:rounded-2xl xl:rounded-3xl overflow-hidden mx-auto" style="background-image: url('/images/about-office.png');">
+                
+                <!-- Overlay -->
+                <div class="absolute inset-0 xl:hidden overlay-first-box" style="background: linear-gradient(90deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%);"></div>
+                <div class="absolute inset-0 hidden xl:block overlay-first-box" style="background: linear-gradient(90deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);"></div>
+                
+                <!-- Content - Right Aligned -->
+                <div class="relative z-10 h-full flex items-center justify-end px-4 sm:px-6 lg:px-8 xl:px-12">
+                    <div class="max-w-[200px] sm:max-w-[280px] lg:max-w-[450px] xl:max-w-[550px] text-left">
+                        
+                        <!-- Main Text -->
+                        <h2 class="text-white text-center font-bold font-ddin text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[22px] leading-tight office-title" 
+                            data-en="DUNE provides state-of-the-art office and retail spaces, designed for the world's leading companies to thrive" 
+                            data-ar="يوفر DUNE مساحات مكتبية وتجارية متطورة، مصممة لتزدهر فيها الشركات الرائدة في العالم">
+                            DUNE provides state-of-the-art office and retail spaces, designed for the world's leading companies to thrive
+                        </h2>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Box - Meeting Spaces -->
+            <div class="relative w-full h-[300px] sm:h-[350px] lg:h-[400px] xl:w-[1355px] xl:h-[455px] bg-cover bg-center bg-no-repeat rounded-xl lg:rounded-2xl xl:rounded-3xl overflow-hidden mx-auto" style="background-image: url('/images/about-meeting.png');">
+                
+                <!-- Overlay -->
+                <div class="absolute inset-0 xl:hidden overlay-second-box" style="background: linear-gradient(270deg, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.8) 100%);"></div>
+                <div class="absolute inset-0 hidden xl:block overlay-second-box" style="background: linear-gradient(270deg, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);"></div>
+                
+                <!-- Content - Left Aligned -->
+                <div class="relative z-10 h-full flex items-center justify-start px-4 sm:px-6 lg:px-8 xl:px-12">
+                    <div class="max-w-[200px] sm:max-w-[280px] lg:max-w-[450px] xl:max-w-[550px] text-left">
+                        
+                        <!-- Main Text -->
+                        <h2 class="text-white font-bold font-ddin text-center text-[14px] sm:text-[16px] lg:text-[20px] xl:text-[22px] leading-tight meeting-title" 
+                            data-en="To be the premier destination for multinational brands, offering a affluent and innovative environment in New Cairo." 
+                            data-ar="لتكون الوجهة الأولى للعلامات التجارية متعددة الجنسيات، وتوفر بيئة مزدهرة ومبتكرة في القاهرة الجديدة.">
+                            To be the premier destination for multinational brands, offering a affluent and innovative environment in New Cairo.
+                        </h2>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="max-w-[1440px] my-12 mx-auto relative h-[373px] bg-cover bg-center bg-no-repeat" style="background-image: url('/images/discover.png');">
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(0,0,0,0.9) 65%, rgba(251,170,25,0.5) 100%);"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8">
+            <div class="max-w-[1301px] mx-auto">
+                
+                <!-- Main Heading -->
+                <h2 class="text-white font-bold font-helvetica text-[26px] mb-8 leading-tight discover-main-title" 
+                    data-en="Discover the Advantage At the Heart of New Cairo" 
+                    data-ar="اكتشف الميزة في قلب القاهرة الجديدة">
+                    Discover the Advantage At the Heart of New Cairo
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-white text-[18px] leading-relaxed font-sans max-w-[1301px] mx-auto mb-12 discover-description" 
+                   data-en="Enjoy unmatched connectivity with major roads, premium retail, and dining hotspots nearby. DUNE's prime location elevates your brand's visibility and enhances your team's daily convenience." 
+                   data-ar="استمتع بالاتصال المتميز مع الطرق الرئيسية والتجارة المتميزة ونقاط تناول الطعام القريبة. يرفع موقع ديون المتميز من ظهور علامتك التجارية ويعزز الراحة اليومية لفريقك.">
+                    Enjoy unmatched connectivity with major roads, premium retail, and dining hotspots nearby. DUNE's prime location elevates your brand's visibility and enhances your team's daily convenience.
+                </p>
+                
+                <!-- CTA Button with Icon -->
+                <button class="bg-[#242424] hover:bg-gray-800 text-white py-[10px] px-[20px] rounded-full text-[22px] font-bold transition-colors duration-300 uppercase tracking-wide discover-cta font-ddin inline-flex items-center gap-2" 
+                        data-en="DISCOVER CONNECTIVITY" 
+                        data-ar="الوصول">
+                    <!-- Location Icon -->
+                    <img src="/images/pin.svg" alt="Location Pin" class="w-9 h-9">
+                    <span class="discover-cta-text">DISCOVER CONNECTIVITY</span>
+                </button>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-16">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 lg:gap-0">
+                
+                <!-- Left Section - Logo and Description -->
+                <div class="flex-1 max-w-[500px] lg:max-w-[350px] xl:max-w-[500px] ml-0 md:mx-auto lg:ml-[50px] lg:mx-0 text-center lg:text-left">
+                    <!-- DUNE Logo -->
+                    <div class="mb-6 flex justify-center lg:justify-start">
+                        <img src="/images/white-logo.svg" alt="DUNE" class="h-full w-[120px] lg:w-[140px]">
+                    </div>
+                    
+                    <!-- Description -->
+                    <p class="text-white text-[14px] ml-0 lg:ml-[10px] leading-relaxed font-sans footer-desc" 
+                       data-en="Welcome to DUNE, an exclusive commercial hub in the heart of New Cairo. We strive to create an affluent, innovative environment that meets the highest standards for global businesses." 
+                       data-ar="مرحباً بكم في DUNE، مركز تجاري حصري في قلب القاهرة الجديدة. نسعى لخلق بيئة مزدهرة ومبتكرة تلبي أعلى المعايير للشركات العالمية.">
+                        Welcome to DUNE, an exclusive commercial hub in the heart of New Cairo. We strive to create an affluent, innovative environment that meets the highest standards for global businesses.
+                    </p>
+                </div>
+                
+                <!-- Right Section - Links Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-32 mr-0 lg:mr-[0px] justify-items-center lg:justify-items-start">
+                    
+                    <!-- Quick Links Column -->
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-white font-bold font-ddin text-[22px] lg:text-[25px] mb-4 lg:mb-6 footer-quick-title" 
+                            data-en="Quick Links" 
+                            data-ar="روابط سريعة">
+                            Quick Links
+                        </h3>
+                        <ul class="space-y-3 lg:space-y-4">
+                            <li><a href="index.html" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                            <li><a href="about.html" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="About" data-ar="معلومات عنا">About</a></li>
+                            <li><a href="leasing.html" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="Floor Plans & Leasing" data-ar="مخططات الأرضيات والإيجار">Floor Plans & Leasing</a></li>
+                            <li><a href="amenities.html" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="Amenities" data-ar="الخدمات">Amenities</a></li>
+                            <li><a href="contact.html" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Privacy Policy Column -->
+                    <div class="text-center lg:text-left">
+                        <h3 class="text-white font-bold font-ddin text-[22px] lg:text-[25px] mb-4 lg:mb-6 footer-privacy-title" 
+                            data-en="Privacy Policy" 
+                            data-ar="سياسة الخصوصية">
+                            Privacy Policy
+                        </h3>
+                        <ul class="space-y-3 lg:space-y-4">
+                            <li><a href="#" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="FAQs" data-ar="الأسئلة الشائعة">FAQs</a></li>
+                            <li><a href="#" class="text-white hover:text-[#FBAA19] transition-colors duration-200 footer-link text-[18px] lg:text-[20px] font-ddin" data-en="Careers" data-ar="الوظائف">Careers</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="mt-12 pt-8 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 lg:gap-0">
+                
+                <!-- Empty left spacer for desktop -->
+                <div class="hidden lg:flex flex-1"></div>
+                
+                <!-- Copyright - Centered on desktop, left on mobile -->
+                <div class="flex-1 text-center lg:text-center order-2 lg:order-1">
+                    <p class="text-[#FFFFFF] text-[14px] footer-copyright" 
+                       data-en="© 2025 Dune . All rights reserved" 
+                       data-ar="© 2025 ديون . جميع الحقوق محفوظة">
+                        © 2025 Dune . All rights reserved
+                    </p>
+                </div>
+                
+                <!-- Social Media Icons - Center on mobile, right on desktop -->
+                <div class="flex-1 flex justify-center lg:justify-end order-1 lg:order-2">
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-[#FBAA19] transition-colors duration-200">
+                            <img src="/images/fb.svg" alt="Facebook" class="w-6 h-6">
+                        </a>
+                        <a href="#" class="text-white hover:text-[#FBAA19] transition-colors duration-200">
+                            <img src="/images/in.svg" alt="Instagram" class="w-6 h-6">
+                        </a>
+                        <a href="#" class="text-white hover:text-[#FBAA19] transition-colors duration-200">
+                            <img src="/images/yt.svg" alt="YouTube" class="w-6 h-9">
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="index.js"></script>
+</body>
+</html>
